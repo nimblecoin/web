@@ -41,7 +41,7 @@ if ($user->isAuthenticated()) {
   }
 
   $aWorkers = $worker->getWorkers($_SESSION['USERDATA']['id']);
-  if (!$aWorkers) $_SESSION['POPUP'][] = array('CONTENT' => 'You have no workers configured', 'TYPE' => 'errormsg');
+  //if (!$aWorkers) $_SESSION['POPUP'][] = array('CONTENT' => 'You have no workers configured', 'TYPE' => 'errormsg');
 
   $smarty->assign('WORKERS', $aWorkers);
 }
