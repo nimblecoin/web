@@ -59,13 +59,23 @@ class Mail extends Base {
     $this->smarty->assign('WEBSITENAME', $this->setting->getValue('website_name'));
     $this->smarty->assign('SUBJECT', $aData['subject']);
     $this->smarty->assign('DATA', $aData);
-    $headers = 'From: ' . $this->setting->getValue('website_name') . '<' . $this->setting->getValue('website_email') . ">\n";
-    $headers .= "MIME-Version: 1.0\n";
-    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-    if (strlen(@$aData['senderName']) > 0 && @strlen($aData['senderEmail']) > 0 )
-      $headers .= 'Reply-To: ' . $aData['senderName'] . ' <' . $aData['senderEmail'] . ">\n";
-    if (mail($aData['email'], $this->smarty->fetch(BASEPATH . 'templates/mail/subject.tpl'), $this->smarty->fetch(BASEPATH . 'templates/mail/' . $template . '.tpl'), $headers))
-      return true;
+    //$headers = 'From: ' . $this->setting->getValue('website_name') . '<' . $this->setting->getValue('website_email') . ">\n";
+    //$headers .= "MIME-Version: 1.0\n";
+    //$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+    //if (strlen(@$aData['senderName']) > 0 && @strlen($aData['senderEmail']) > 0 )
+    //  $headers .= 'Reply-To: ' . $aData['senderName'] . ' <' . $aData['senderEmail'] . ">\n";
+    //if (mail($aData['email'], $this->smarty->fetch(BASEPATH . 'templates/mail/subject.tpl'), $this->smarty->fetch(BASEPATH . 'templates/mail/' . $template . '.tpl'), $headers))
+    //  return true;
+    
+    $postmark = new Postmark ("80ad9b48-0a53-44d2-9018-0c11f122cc6a","nimble-bot@nimblecoin.us");
+    $result = $postmark->to($aData['email'])
+    		    ->subject($this->smarty->fetch(BASEPATH . 'templates/mail/subject.tpl'))
+    		    ->html_message($this->smarty->fetch(BASEPATH . 'templates/mail/' . $template . '.tpl'))
+    		    ->send();
+    
+    if($result === true)
+    		return true;
+    
     $this->setErrorMessage($this->sqlError('E0031'));
     return false;
   }
