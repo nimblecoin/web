@@ -41,19 +41,8 @@ The good thing with this approach: You can keep the backend code updated! Since 
 keep your installation updated. You decide which new feature you'd like to integrate on your own theme. Bugfixes to the code will work out of the box!
 
 Other customizations are also possible but will require merging changes together. Usually users would not need to change the backend code unless they wish to work
-on non-existing features in `MPOS`. For the vast majority, adjusting themes should be enough to highlight your pool from others.
+on non-existing features in `nimblecoin`. For the vast majority, adjusting themes should be enough to highlight your pool from others.
 
-In all that, I humbly ask to keep the `MPOS` author reference and Github URL intact.
-
-Related Software
-================
-
-There are a few other projects out there that take advantage of MPOS and it's included API. Here a quick list that you can check out for yourself:
-
-* [MPOS IRC Bot](https://github.com/WKNiGHT-/mpos-bot) written in Python, standalone bot, using the MPOS API
-* [MPOS Eggdrop Module](https://github.com/iAmShorty/mpos-eggdrop-tcl) written in TCL, adding MPOS commands to this bot, using the MPOS API
-* [Windows Phone Pool App](http://www.windowsphone.com/en-us/store/app/meeneminermonitor/7ec6eac7-a642-409b-96c8-57b5cfdf45cf)
-* [iPhone iMPOS App](https://itunes.apple.com/us/app/impos/id742179239?mt=8)
 
 Contributing
 ============
