@@ -23,8 +23,9 @@ It should also work on any related distribution (RHEL, Debian).
 Setup
 ============
 
-* Set
-* 
+* Fork the repo
+* Copy config public/include/config/global.inc.dist.php to a new global.inc.php
+* Create your own database or use the dev database below
 
 
 Dev Config
