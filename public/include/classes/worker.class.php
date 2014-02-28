@@ -44,7 +44,7 @@ class Worker extends Base {
    * @param none
    * @return data array Workers in IDLE state and monitoring enabled
    **/
-  public function getAllIdleWorkers($interval=600) {
+  public function getAllIdleWorkers($interval=1200) {
     $this->debug->append("STA " . __METHOD__, 4);
     $stmt = $this->mysqli->prepare("
       SELECT w.account_id AS account_id, w.id AS id, w.username AS username
@@ -53,8 +53,7 @@ class Worker extends Base {
       ON w.username = s.username
       AND s.time > DATE_SUB(now(), INTERVAL ? SECOND)
       AND our_result = 'Y'
-      WHERE w.monitor = 1
-      AND s.id IS NULL
+      WHERE s.id IS NULL
     ");
     if ($this->checkStmt($stmt) && $stmt->bind_param('i', $interval) && $stmt->execute() && $result = $stmt->get_result())
       return $result->fetch_all(MYSQLI_ASSOC);
