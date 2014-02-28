@@ -1,4 +1,20 @@
-ErrorDocument 404 /index.php?page=error&action=404
+Options +FollowSymLinks -MultiViews
+
+<IfModule mod_rewrite.c>
+	# Turn mod_rewrite on
+	RewriteEngine On
+	RewriteBase /
+	
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-l
+	
+	RewriteRule ^([^/]+)/?$ index.php?page=$1 [L,QSA]
+	RewriteRule ^([^/]+)/([^/]+)/?$ index.php?page=$1&action=$2 [L,QSA]
+	
+</IfModule>
+
+ErrorDocument 404 /error/404
 RedirectMatch 404 /templates(/|$)
 RedirectMatch 404 /include(/|$)
 RedirectMatch 404 /.git(/|$)
