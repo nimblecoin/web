@@ -30,25 +30,28 @@ Setup
 Dev Config
 =============
 
-Dev Webserver
-http://bidoof.nimblecoin.us — Contact veroz if you would like to test your branch here
+Dev Webserver (Contact veroz if you would like to test your branch here)
+
+    http://bidoof.nimblecoin.us
 
 Dev Database
+
     $config['db']['host'] = 'db.nimblecoin.us';
-$config['db']['user'] = 'nimblecoin_dev';
-$config['db']['pass'] = 'q7fzhYzyGYWJKXGj';
-$config['db']['port'] = 3306;
-$config['db']['name'] = 'nimblecoin_dev';
+    $config['db']['user'] = 'nimblecoin_dev';
+    $config['db']['pass'] = 'q7fzhYzyGYWJKXGj';
+    $config['db']['port'] = 3306;
+    $config['db']['name'] = 'nimblecoin_dev';
 
 Dev Dogecoind (Testnet)
-$config['wallet']['type'] = 'http';
-$config['wallet']['host'] = 'bidoof.nimblecoin.us:22555';
-$config['wallet']['username'] = 'dogecoinrpc';
-$config['wallet']['password'] = '34gC49MCmp5WN17WC5y5sy32jdc8jiGiYq8WZSud5zfTT';
+
+    $config['wallet']['type'] = 'http';
+    $config['wallet']['host'] = 'bidoof.nimblecoin.us:22555';
+    $config['wallet']['username'] = 'dogecoinrpc';
+    $config['wallet']['password'] = '34gC49MCmp5WN17WC5y5sy32jdc8jiGiYq8WZSud5zfTT';
 
 Dev Stratum (Testnet)
-stratum-tcp://bidoof.nimblecoin.us:3333
 
+    stratum-tcp://bidoof.nimblecoin.us:3333
 
 
 Contributing
