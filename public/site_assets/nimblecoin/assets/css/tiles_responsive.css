@@ -1,0 +1,25 @@
+h4.custom-line-height{
+	line-height:25px
+}
+
+@media (min-width: 768px) and (max-width: 1024px) { 
+	
+	.tiles.adjust-text p{
+		font-size:10px;
+	}
+	
+	.tiles.adjust-text h3{
+		font-size:20px;
+	}
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+	
+	.tiles.adjust-text p{
+		font-size:14px;
+	}
+
+}
