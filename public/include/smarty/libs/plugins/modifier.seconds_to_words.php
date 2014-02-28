@@ -18,6 +18,5 @@ function smarty_modifier_seconds_to_words($seconds) {
 
   if ($hours > 0) $out .= $hours . " hour". ($hours > 1 ? "s" : "")." ";
   if ($minutes > 0) $out .= $minutes . " minute". ($minutes > 1 ? "s" : "")." ";
-  if ($seconds > 0) $out .= $seconds . " second". ($seconds > 1 ? "s" : "");
   return trim($out);
 }
