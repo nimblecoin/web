@@ -30,8 +30,24 @@ if ($setting->getValue('disable_notifications') == 1) {
 }
 
 $log->logDebug("  IDLE Worker Notifications ...");
+
+// Grab the last 1 blocks found as a quick overview
+$iLimit = 1;
+$aBlocksFoundData = $statistics->getBlocksFound($iLimit);
+count($aBlocksFoundData) > 0 ? $aBlockData = $aBlocksFoundData[0] : $aBlockData = array();
+
+// Time since last block
+if (!empty($aBlockData)) {
+  $dTimeSinceLast = (time() - $aBlockData['time']);
+  if ($dTimeSinceLast < 0) $dTimeSinceLast = 0;
+} else {
+  $dTimeSinceLast = 0;
+}
+
 // Find all IDLE workers
-$aWorkers = $worker->getAllIdleWorkers();
+
+// Wait 10m after finding a block
+($dTimeSinceLast >= 600) ? $aWorkers = $worker->getAllIdleWorkers() : $aWorkers = array();
 if (empty($aWorkers)) {
   $log->logDebug(" no idle workers found");
 } else {
