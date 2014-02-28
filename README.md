@@ -20,28 +20,35 @@ It should also work on any related distribution (RHEL, Debian).
 * litecoind
 
 
-Installation
+Setup
 ============
 
-Please take a look at the [Quick Start Guide](https://github.com/TheSerapher/php-mpos/wiki/Quick-Start-Guide). This will give you an idea how to setup `MPOS`.
+* Set
+* 
 
-Customization
+
+Dev Config
 =============
 
-This project was meant to allow users to easily customize the system and templates. Hence no upstream framework was used to keep it as simple as possible.
-If you are just using the system, there will be no need to adjust anything. Things will work out of the box! But if you plan on creating
-your own theme, things are pretty easy:
+Dev Webserver
+http://bidoof.nimblecoin.us — Contact veroz if you would like to test your branch here
 
-* Create a new theme folder in `public/templates/`
-* Create a new site_assets folder in `public/site_assets`
-* Create your own complete custom template or copy from an existing one
-* Change your theme in the `Admin Panel` and point it to the newly created folder
+Dev Database
+$config['db']['host'] = 'db.nimblecoin.us';
+$config['db']['user'] = 'nimblecoin_dev';
+$config['db']['pass'] = 'q7fzhYzyGYWJKXGj';
+$config['db']['port'] = 3306;
+$config['db']['name'] = 'nimblecoin_dev';
 
-The good thing with this approach: You can keep the backend code updated! Since your new theme will never conflict with existing themes, a simple git pull will
-keep your installation updated. You decide which new feature you'd like to integrate on your own theme. Bugfixes to the code will work out of the box!
+Dev Dogecoind (Testnet)
+$config['wallet']['type'] = 'http';
+$config['wallet']['host'] = 'bidoof.nimblecoin.us:22555';
+$config['wallet']['username'] = 'dogecoinrpc';
+$config['wallet']['password'] = '34gC49MCmp5WN17WC5y5sy32jdc8jiGiYq8WZSud5zfTT';
 
-Other customizations are also possible but will require merging changes together. Usually users would not need to change the backend code unless they wish to work
-on non-existing features in `nimblecoin`. For the vast majority, adjusting themes should be enough to highlight your pool from others.
+Dev Stratum (Testnet)
+stratum-tcp://bidoof.nimblecoin.us:3333
+
 
 
 Contributing
