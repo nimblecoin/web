@@ -211,7 +211,7 @@ if ($bMessage)
   $_SESSION['POPUP'][] = array('CONTENT' => implode($aCronMessage, ''));
 
 // Make it available in Smarty
-$smarty->assign('PATH', 'site_assets/' . THEME);
-$smarty->assign('GLOBALASSETS', 'site_assets/global');
+$smarty->assign('PATH', '/site_assets/' . THEME);
+$smarty->assign('GLOBALASSETS', '/site_assets/global');
 $smarty->assign('GLOBAL', $aGlobal);
 ?>
