@@ -28,8 +28,8 @@ if ($setting->getValue('maintenance') && !$user->isAdmin($user->getUserIdByEmail
       if ($user->checkLogin(@$_POST['username'], @$_POST['password']) ) {
         $port = ($_SERVER["SERVER_PORT"] == "80" || $_SERVER["SERVER_PORT"] == "443") ? "" : (":".$_SERVER["SERVER_PORT"]);
         $location = (@$_SERVER['HTTPS'] == "on") ? 'https://' : 'http://';
-        $location .= $_SERVER['SERVER_NAME'] . $port . $_SERVER['SCRIPT_NAME'];
-        $location.= '?page=dashboard';
+        $location .= $_SERVER['SERVER_NAME'] . $port;
+        $location.= '/dashboard';
         if (!headers_sent()) header('Location: ' . $location);
         exit('<meta http-equiv="refresh" content="0; url=' . htmlspecialchars($location) . '"/>');
       } else {

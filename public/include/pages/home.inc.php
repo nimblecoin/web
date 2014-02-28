@@ -11,6 +11,7 @@ if (!$smarty->isCached('master.tpl', $smarty_cache_key)) {
   if (is_array($aNews)) {
     foreach ($aNews as $key => $aData) {
       // Transform Markdown content to HTML
+      $aNews[$key]['header'] = Markdown::defaultTransform($aData['header']);
       $aNews[$key]['content'] = Markdown::defaultTransform($aData['content']);
     }
   }

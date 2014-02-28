@@ -16,6 +16,14 @@ if ($bitcoin->can_connect() === true){
 
 if (!$smarty->isCached('master.tpl', $smarty_cache_key)) {
   $debug->append('No cached version available, fetching from backend', 3);
+  $aPoolHourlyHashRates = $statistics->getHourlyHashrateByPool();
+  $smarty->assign("POOLHASHRATES", @$aPoolHourlyHashRates);
+} else {
+  $debug->append('Using cached page', 3);
+}
+
+if (!$smarty->isCached('master.tpl', $smarty_cache_key)) {
+  $debug->append('No cached version available, fetching from backend', 3);
 
   // Top share contributors
   $aContributorsShares = $statistics->getTopContributors('shares', 15);
