@@ -34,7 +34,7 @@ Dev Webserver
 http://bidoof.nimblecoin.us — Contact veroz if you would like to test your branch here
 
 Dev Database
-$config['db']['host'] = 'db.nimblecoin.us';
+    $config['db']['host'] = 'db.nimblecoin.us';
 $config['db']['user'] = 'nimblecoin_dev';
 $config['db']['pass'] = 'q7fzhYzyGYWJKXGj';
 $config['db']['port'] = 3306;
