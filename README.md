@@ -17,15 +17,15 @@ It should also work on any related distribution (RHEL, Debian).
  * mysql-server
 * memcached
 * stratum-mining
-* litecoind
+* dogecoind
 
 
 Setup
 ============
 
-* Fork the repo
-* Copy config public/include/config/global.inc.dist.php to a new global.inc.php
-* Create your own database or use the dev database below
+* Fork the repo.
+* Copy `public/include/config/global.inc.dist.php` to a new `global.inc.php`.
+* Edit the config with your own set up or use the Dev Config details below.
 
 
 Dev Config
@@ -60,9 +60,9 @@ Contributing
 
 You can contribute to this project in different ways:
 
-* Report outstanding issues and bugs by creating an [Issue][1]
-* Suggest feature enhancements also via [Issues][1]
-* Fork the project, create a branch and file a pull request to improve the code itself
+* Report outstanding issues and bugs by creating an [Issue][1].
+* Suggest feature enhancements also via [Issues][1].
+* Fork the project, create a branch, and file a pull request.
 
 
 License and Author
