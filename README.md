@@ -33,7 +33,7 @@ Dev Config
 
 Dev Webserver (Contact veroz if you would like to test your branch here)
 
-    http://bidoof.nimblecoin.us
+[http://bidoof.nimblecoin.us](http://bidoof.nimblecoin.us)
 
 Dev Database
 
@@ -60,8 +60,8 @@ Contributing
 
 You can contribute to this project in different ways:
 
-* Report outstanding issues and bugs by creating an [Issue][1].
-* Suggest feature enhancements also via [Issues][1].
+* Ideas, bugs, and enhancements should be logged in the [public facing issue tracker](https://github.com/nimblecoin/server/issues?state=open).
+* Internal discussions should use the [private issue tracker](https://github.com/nimblecoin/web/issues).
 * Fork the project, create a branch, and file a pull request.
 
 
