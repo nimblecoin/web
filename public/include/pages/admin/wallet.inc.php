@@ -18,7 +18,7 @@ if (!$smarty->isCached('master.tpl', $smarty_cache_key)) {
     $dAccountAddresses = array();
     foreach($dWalletAccounts as $key => $value)
     {
-      $dAccountAddresses[$key] = $bitcoin->getaddressesbyaccount($key);
+      $dAccountAddresses[$key] = $bitcoin->getaddressesbyaccount(strval($key));
     }
     
     $aGetInfo = $bitcoin->getinfo();
