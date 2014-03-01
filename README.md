@@ -46,7 +46,7 @@ Dev Database
 Dev Dogecoind (Testnet)
 
     $config['wallet']['type'] = 'http';
-    $config['wallet']['host'] = 'bidoof.nimblecoin.us:22555';
+    $config['wallet']['host'] = 'bidoof.nimblecoin.us:44555';
     $config['wallet']['username'] = 'dogecoinrpc';
     $config['wallet']['password'] = '34gC49MCmp5WN17WC5y5sy32jdc8jiGiYq8WZSud5zfTT';
 
