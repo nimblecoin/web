@@ -48,7 +48,7 @@
             {/if}</a>
           </li>
           <li class="{if $smarty.request.action == 'transactions'}active{/if}"><a href="/account/transactions">Transactions</a></li>
-          {if !$GLOBAL.config.disable_notifications}<li class="{if $smarty.request.action == 'notifications'}active{/if}"><a href="/account/notifications">Notifications <span class="label label-info pull-right m-r-30">NEW</span></a></li>{/if}
+          {if !$GLOBAL.config.disable_notifications}<li class="{if $smarty.request.action == 'notifications'}active{/if}"><a href="/account/notifications">Notifications</a></li>{/if}
         {if !$GLOBAL.config.disable_invitations}<li class="icon-plus"><a href="/account/invitations">Invitations</a></li>{/if}
           <li class="{if $smarty.request.action == 'edit'}active{/if}"><a href="/account/edit">Settings {if !$GLOBAL.userdata.coin_address}
           <span class="label label-important pull-right m-r-30">!</span>
@@ -80,6 +80,7 @@
         <ul> 
           <li class="{if $smarty.request.action == 'pool'}active{/if}"> <a href="/statistics/pool"> <i class="fa fa-bar-chart-o"></i> <span class="title">Pool</span></a></li>
           <li class="{if $smarty.request.action == 'blocks'}active{/if}"> <a href="/statistics/blocks"> <i class="fa fa-square-o"></i> <span class="title">Blocks</span></a></li>
+          <li class="{if $smarty.request.action == 'donors'}active{/if}"> <a href="/about/donors"> <i class="fa fa-hdd-o"></i> <span class="title">Donators</span>  <span class="label label-info pull-right">NEW</span></a></li>
           <li class="{if $smarty.request.action == 'uptime'}active{/if}"> <a href="/statistics/uptime"> <i class="fa fa-hdd-o"></i> <span class="title">Server</span></a></li>
         </ul>
         <p class="menu-title">Community</p>

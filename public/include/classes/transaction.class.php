@@ -225,6 +225,33 @@ class Transaction extends Base {
       return $result->fetch_all(MYSQLI_ASSOC);
     return $this->sqlError();
   }
+  
+  public function getDonationsThisMonth() {
+    $this->debug->append("STA " . __METHOD__, 4);
+    $stmt = $this->mysqli->prepare("
+      SELECT
+        SUM(t.amount) AS donation,
+        a.username AS username,
+        a.is_anonymous AS is_anonymous,
+        ROUND(a.donate_percent, 2) AS donate_percent
+      FROM $this->table AS t
+      LEFT JOIN " . $this->user->getTableName() . " AS a
+      ON t.account_id = a.id
+      LEFT JOIN blocks AS b
+      ON t.block_id = b.id
+      WHERE
+      (
+        ( t.type = 'Donation' AND b.confirmations >= " . $this->config['confirmations'] . " ) OR
+        t.type = 'Donation_PPS'
+      )
+      AND MONTH(timestamp) = MONTH(NOW()) 
+      GROUP BY a.username
+      ORDER BY donation DESC
+      ");
+    if ($this->checkStmt($stmt) && $stmt->execute() && $result = $stmt->get_result())
+      return $result->fetch_all(MYSQLI_ASSOC);
+    return $this->sqlError();
+  }
 
   /**
    * Get total balance for all users locked in wallet
