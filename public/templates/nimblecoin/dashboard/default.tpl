@@ -223,7 +223,7 @@
               <td><span class="muted">250,000 <i class="fa fa-info-circle tip" data-toggle="tooltip" title="Dogecoin block rewards are random from 1 to 500,000 coins." data-placement="top"></i></span></td>
               <td><span class="muted">{$GLOBAL.userdata.estimates.payout|number_format:"8"}</span></td>
               <td>
-                <span class="label">Estimated</span> <i class="fa fa-info-circle tip" data-toggle="tooltip" title="Estimated based on an average 250,000 block reward. Includes  +{($GLOBAL.userdata.estimates.fee|number_format:"8") * -1} from -1% Pool Fee" data-placement="top"></i>
+                <span class="label">Estimated</span> <i class="fa fa-info-circle tip" data-toggle="tooltip" title="Estimated based on an average 250,000 block reward." data-placement="top"></i>
               </td>
             </tr>
           {if $TRANSACTIONS}
