@@ -1,8 +1,8 @@
 
     <!-- BEGIN MINI-PROFILE -->
-    <div class="page-sidebar-wrapper" id="main-menu-wrapper"> 
+    <div class="page-sidebar-wrapper" id="main-menu-wrapper">
       {if $GLOBAL.userdata.username|default}
-      <div class="user-info-wrapper">	
+      <div class="user-info-wrapper">
         <div class="user-info">
           <div class="username">{$smarty.session.USERDATA.username|escape}</div>
           <div id="balance">
@@ -15,25 +15,25 @@
       </div>
       {/if}
       <!-- END MINI-PROFILE -->
-    
-    <!-- BEGIN SIDEBAR MENU -->	
+
+    <!-- BEGIN SIDEBAR MENU -->
  	<p class="menu-title">CONTROL PANEL</p>
-     <ul>	
+     <ul>
        <li class="{if $smarty.request.page == 'news'}active{/if}"> <a href="/news"> <i class="icon-custom-home"></i> <span class="title">News</span></a> </li>
       {if !$smarty.session.AUTHENTICATED}
         <li class="{if $smarty.request.page == 'gettingstarted'}active{/if}"> <a href="/gettingstarted"> <i class="fa fa-info-circle"></i> <span class="title">Getting Started</span></a></li>
         <li class="{if $smarty.request.page == 'register'}active{/if}"> <a href="/register"> <i class="fa fa-plus"></i> <span class="title">Create Account</span></a></li>
         <li class="{if $smarty.request.page == 'login'}active{/if}"> <a href="/login"> <i class="fa fa-user"></i> <span class="title">Login</span></a></li>
       {/if}
-      
-       
+
+
        {if $smarty.session.AUTHENTICATED|default:"0" == 1}
        <li class="{if $smarty.request.page == 'dashboard'}active{/if}"> <a href="/dashboard"> <i class="fa fa-tachometer"></i> <span class="title">Dashboard</span></a></li>
        {/if}
-       
-       
+
+
        {if $smarty.session.AUTHENTICATED|default:"0" == 1}
-        <li class="{if $smarty.request.page == 'account'}active{/if}"><a href="javascript:;"><i class="fa fa-rocket"></i> <span class="title">My Account</span> 
+        <li class="{if $smarty.request.page == 'account'}active{/if}"><a href="javascript:;"><i class="fa fa-rocket"></i> <span class="title">My Account</span>
           {if ($GLOBAL.userdata.shares.valid < 1) || (!$GLOBAL.userdata.coin_address)}
           <span class="label label-important pull-right">SETUP</span>
           {/if}
@@ -57,7 +57,7 @@
         </ul>
         </li>
         {/if}
-        
+
          {if $smarty.session.AUTHENTICATED|default:"0" == 1 && $GLOBAL.userdata.is_admin == 1}
            <li class="{if $smarty.request.page == 'admin'}active{/if}"><a href="javascript:;"><i class="fa fa-cogs"></i> <span class="title">Admin</span> <span class="arrow"></span></a>
            <ul class="sub-menu">
@@ -75,12 +75,12 @@
            </li>
            {/if}
        </ul>
-       
+
         <p class="menu-title">Stats</p>
-        <ul> 
+        <ul>
           <li class="{if $smarty.request.action == 'pool'}active{/if}"> <a href="/statistics/pool"> <i class="fa fa-bar-chart-o"></i> <span class="title">Pool</span></a></li>
           <li class="{if $smarty.request.action == 'blocks'}active{/if}"> <a href="/statistics/blocks"> <i class="fa fa-square-o"></i> <span class="title">Blocks</span></a></li>
-          <li class="{if $smarty.request.action == 'donors'}active{/if}"> <a href="/about/donors"> <i class="fa fa-hdd-o"></i> <span class="title">Donators</span>  <span class="label label-info pull-right">NEW</span></a></li>
+          <li class="{if $smarty.request.action == 'donors'}active{/if}"> <a href="/about/donors"> <i class="fa fa-hdd-o"></i> <span class="title">Donors</span>  <span class="label label-info pull-right">NEW</span></a></li>
           <li class="{if $smarty.request.action == 'uptime'}active{/if}"> <a href="/statistics/uptime"> <i class="fa fa-hdd-o"></i> <span class="title">Server</span></a></li>
         </ul>
         <p class="menu-title">Community</p>
@@ -102,4 +102,4 @@
          </li>
        </ul>
   <div class="clearfix"></div>
-  
+
