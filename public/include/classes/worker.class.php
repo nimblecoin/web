@@ -46,6 +46,7 @@ class Worker extends Base {
    **/
   public function getAllIdleWorkers($interval=1200) {
     $this->debug->append("STA " . __METHOD__, 4);
+    if ($data = $this->memcache->get(__FUNCTION__)) return $data;
     $stmt = $this->mysqli->prepare("
       SELECT w.account_id AS account_id, w.id AS id, w.username AS username
       FROM " . $this->share->getTableName() . " AS s
