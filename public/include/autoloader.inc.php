@@ -47,6 +47,7 @@ require_once(CLASS_DIR . '/template.class.php');
 require_once(INCLUDE_DIR . '/smarty.inc.php');
 
 // Load everything else in proper order
+require_once(CLASS_DIR . '/postmark.class.php');
 require_once(CLASS_DIR . '/mail.class.php');
 require_once(CLASS_DIR . '/tokentype.class.php');
 require_once(CLASS_DIR . '/token.class.php');
