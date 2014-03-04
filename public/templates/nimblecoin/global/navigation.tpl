@@ -90,13 +90,8 @@
          <li><a href="javascript:;"><i class="fa fa-heart"></i> <span class="title">Help</span> <span class="arrow"></span></a>
           <ul class="sub-menu">
             <li class="icon-desktop"><a href="/gettingstarted">Getting Started</a></li>
-            {if !$GLOBAL.website.donors.disabled}
-            <li class="icon-money"><a href="/about/donors">Donors</a></li>
-            {/if}
             <li class="icon-mail"><a href="https://github.com/nimblecoin/server/issues">Report Issue</a></li>
-            {if $GLOBAL.config.disable_contactform|default:"0" != 1}
-            <li class="icon-mail"><a href="/contactform">Contact</a></li>
-            {/if}
+            <li class="icon-doc"><a href="http://docs.nimblecoin.us/api">API Documentation</a></li>
             <li class="icon-doc"><a href="/tac">Terms and Conditions</a></li>
           </ul>
          </li>
