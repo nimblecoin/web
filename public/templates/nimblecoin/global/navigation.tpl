@@ -91,7 +91,7 @@
           <ul class="sub-menu">
             <li class="icon-desktop"><a href="/gettingstarted">Getting Started</a></li>
             <li class="icon-mail"><a href="https://github.com/nimblecoin/server/issues">Report Issue</a></li>
-            <li class="icon-doc"><a href="http://docs.nimblecoin.us/api">API Documentation</a></li>
+            <li class="icon-doc"><a href="http://docs.nimblecoin.us:3000/api">API Documentation</a></li>
             <li class="icon-doc"><a href="/tac">Terms and Conditions</a></li>
           </ul>
          </li>
