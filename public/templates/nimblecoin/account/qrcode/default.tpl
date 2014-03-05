@@ -1,5 +1,5 @@
 {if !$GLOBAL.website.api.disabled}
-<script type="text/javascript" src="{$PATH}/js/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="{$PATH}/assets/js/jquery.qrcode.min.js"></script>
 <script type="text/javascript">
   {literal}
   $(document).ready(function(){
