@@ -64,7 +64,7 @@ $(document).ready(function() {
       <tr class="{cycle values="odd,even"}">
         <td align="center">{$BLOCKSFOUND[block].time|date_format:"%d/%m %H:%M:%S"}</td>
 {if ! $GLOBAL.website.blockexplorer.disabled}
-        <td align="center"><a href="{$smarty.server.SCRIPT_NAME}?page=statistics&action=round&height={$BLOCKSFOUND[block].height}">{$BLOCKSFOUND[block].height}</a></td>
+        <td><span class="label label-success"><a href="{$smarty.server.SCRIPT_NAME}?page=statistics&action=round&height={$BLOCKSFOUND[block].height}">{$BLOCKSFOUND[block].height}</a></span></td>
 {else}
         <td align="center">{$BLOCKSFOUND[block].height}</td>
 {/if}
