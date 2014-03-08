@@ -85,7 +85,7 @@
       <div class="progress  progress-small no-radius">
         <div class="progress-bar progress-bar-success animate-progress-bar" data-percentage="{$ESTIMATES.percent}%" ></div>
       </div>
-      <div class="description"><span class="mini-description"><span class="text-black bold">{$NETWORK.EstNextDifficulty|number_format:"0"}</span> Difficulty </span>  </div>
+      <div class="description"><span class="mini-description"><span class="text-black bold">{$NETWORK.difficulty|number_format:"0"}</span> Difficulty </span>  </div>
     </div>
   </div>
 </div>
