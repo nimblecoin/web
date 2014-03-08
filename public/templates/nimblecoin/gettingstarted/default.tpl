@@ -27,7 +27,7 @@
         <div class="row">
           <div class="col-md-12 m-b-20">
             <div class="stratum-info">
-              <h4>USA: stratum+tcp://us-west.nimblecoin.us:3333 -u username.workername -p nimblecoin</h4>
+              <h4>USA: stratum+tcp://us-west.nimblecoin.us:3333 -u username.workername -p workerpass</h4>
             </div>
           </div>
         </div>
@@ -35,7 +35,15 @@
         <div class="row">
           <div class="col-md-12 m-b-20">
             <div class="stratum-info">
-              <h4>USA: stratum+tcp://us-east.nimblecoin.us:3333 -u username.workername -p nimblecoin</h4>
+              <h4>USA: stratum+tcp://us-central.nimblecoin.us:80 -u username.workername -p workerpass</h4>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-12 m-b-20">
+            <div class="stratum-info">
+              <h4>USA: stratum+tcp://us-east.nimblecoin.us:3333 -u username.workername -p workerpass</h4>
             </div>
           </div>
         </div>
@@ -43,7 +51,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="stratum-info">
-              <h4>EU: stratum+tcp://uk.nimblecoin.us:3333 -u username.workername -p nimblecoin</h4>
+              <h4>EU: stratum+tcp://uk.nimblecoin.us:3333 -u username.workername -p workerpass</h4>
             </div>
           </div>
         </div>
