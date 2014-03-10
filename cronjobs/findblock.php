@@ -152,7 +152,7 @@ if (empty($aAllBlocks)) {
           $finder = $user->getUserName($iAccountId);
           foreach ($aAccounts as $aData) {
             $aMailData['height'] = $aBlock['height'];
-            $aMailData['subject'] = 'New Block';
+            $aMailData['subject'] = 'Block '. $aBlock['height'] .'found! Amount: '. $aBlock['amount']; .' '. $config['currency'];
             $aMailData['email'] = $user->getUserEmail($user->getUserName($aData['account_id']));
             $aMailData['shares'] = $iRoundShares;
             $aMailData['amount'] = $aBlock['amount'];
