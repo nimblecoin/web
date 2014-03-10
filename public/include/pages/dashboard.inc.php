@@ -6,7 +6,7 @@ $defflip = (!cfip()) ? exit(header('HTTP/1.1 401 Unauthorized')) : 1;
 if (!$smarty->isCached('master.tpl', $smarty_cache_key)) {
   $debug->append('No cached version available, fetching from backend', 3);
   if ($user->isAuthenticated()) {
-    $aHourlyHashRates = $statistics->getHourlyHashrateByAccount($_SESSION['USERDATA']['username'], $_SESSION['USERDATA']['id']);
+    $aHourlyHashRates = $statistics->getHourlyHashrateByAccount($_SESSION['USERDATA']['username'], $_SESSION['USERDATA']['id'], $user->getUserTimezone($_SESSION['USERDATA']['id']));
   }
   $smarty->assign("YOURHASHRATES", @$aHourlyHashRates);
 } else {

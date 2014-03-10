@@ -117,7 +117,7 @@ class Transaction extends Base {
         t.type AS type,
         t.amount AS amount,
         t.coin_address AS coin_address,
-        t.timestamp AS timestamp,
+        CONVERT_TZ(t.timestamp, 'UTC', '". date_default_timezone_get() ."') AS timestamp,
         t.txid AS txid,
         b.height AS height,
         b.blockhash AS blockhash,
@@ -171,6 +171,7 @@ class Transaction extends Base {
     }
     $sql .= " ORDER BY id DESC LIMIT ?,?";
     // Add some other params to query
+    
     $this->addParam('i', $start);
     $this->addParam('i', $limit);
     $stmt = $this->mysqli->prepare($sql);

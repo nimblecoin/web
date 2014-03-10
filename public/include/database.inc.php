@@ -8,6 +8,13 @@ if ($config['mysql_filter']) {
   $mysqli = new mysqli($config['db']['host'], $config['db']['user'], $config['db']['pass'], $config['db']['name'], $config['db']['port']);
 }
 
+if (@$_SESSION['USERDATA']['id']) {
+  $timezone = $mysqli->query('SELECT timezone FROM accounts WHERE id = '. @$_SESSION['USERDATA']['id'].'')->fetch_object()->timezone;
+  date_default_timezone_set($timezone);
+}
+
+$mysqli->query('SET time_zone = '. date_default_timezone_get() .'');
+
 // Check if read-only and quit if it is on
 if ($mysqli->query('/* MYSQLND_MS_MASTER_SWITCH */SELECT @@global.read_only AS read_only')->fetch_object()->read_only == 1) {
   die('Database is in READ-ONLY mode');

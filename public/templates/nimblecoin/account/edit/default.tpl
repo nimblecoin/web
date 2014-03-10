@@ -117,6 +117,18 @@
     				    {nocache}<input type="text" class="form-control" name="donatePercent" value="{$smarty.request.donatePercent|default:$GLOBAL.userdata.donate_percent|escape|number_format:"1"}" size="4" {if $GLOBAL.twofactor.enabled && $GLOBAL.twofactor.options.details && !$DETAILSUNLOCKED}disabled{/if}/>{/nocache}
     				  </div>
     				</div>
+    				
+    				<div class="form-group">
+              <label class="form-label">Timezone</label>
+              <span class="help">Select the closest city</span>
+              <div class="input-group">
+    				    <select name="timezone">
+    				      {SECTION tzname $TIMEZONES}
+    				        <option value="{$TIMEZONES[tzname]}" {if $GLOBAL.userdata.timezone == $TIMEZONES[tzname]}selected{/if}>{$TIMEZONES[tzname]}</option>
+    				      {/SECTION}
+    				    </select>
+    				  </div>
+    				</div>
   				
   				</div>
   				<div class="clearfix"></div>

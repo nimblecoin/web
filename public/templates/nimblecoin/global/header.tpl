@@ -36,8 +36,9 @@
 		 
 		 <!-- BEGIN CHAT TOGGLER -->
 	      <div class="pull-right"> 
-				{if $smarty.session.AUTHENTICATED|default:"0" == 1}
+
 			 <ul class="nav quick-section">
+		    {if $smarty.session.AUTHENTICATED|default:"0" == 1}
 				<li class="quicklinks"> 
 					<a data-toggle="dropdown" class="dropdown-toggle pull-right" href="#" id="user-options">						
 						<div class="iconset top-settings-dark"></div> 	
@@ -48,8 +49,8 @@
             <li><a href="/logout"><i class="fa fa-power-off"></i> &nbsp;&nbsp;Logout</a></li>
 	        </ul>
 				</li> 
+				{/if}
 			</ul>
-			{/if}
 	      </div>
 		   <!-- END CHAT TOGGLER -->
 		   

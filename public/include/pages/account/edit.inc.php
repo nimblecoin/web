@@ -124,7 +124,7 @@ if ($user->isAuthenticated()) {
 
           case 'updateAccount':
             if (!$config['csrf']['enabled'] || $config['csrf']['enabled'] && $csrftoken->valid) {
-              if ($user->updateAccount($_SESSION['USERDATA']['id'], $_POST['paymentAddress'], $_POST['payoutThreshold'], $_POST['donatePercent'], $_POST['email'], $_POST['is_anonymous'], $oldtoken_ea)) {
+              if ($user->updateAccount($_SESSION['USERDATA']['id'], $_POST['paymentAddress'], $_POST['payoutThreshold'], $_POST['donatePercent'], $_POST['email'], $_POST['is_anonymous'], $_POST['timezone'], $oldtoken_ea)) {
             	$_SESSION['POPUP'][] = array('CONTENT' => 'Account details updated', 'TYPE' => 'success');
               } else {
             	$_SESSION['POPUP'][] = array('CONTENT' => 'Failed to update your account: ' . $user->getError(), 'TYPE' => 'errormsg');
@@ -187,8 +187,13 @@ if ($config['twofactor']['enabled'] && $user->isAuthenticated()) {
   $smarty->assign("DETAILSSENT", $ea_sent);
 }
 
+$tzlist = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
+
+$smarty->assign("TIMEZONES", $tzlist);
 $smarty->assign("DONATE_THRESHOLD", $config['donate_threshold']);
 
-// Tempalte specifics
+
+
+// Template specifics
 $smarty->assign("CONTENT", "default.tpl");
 ?>

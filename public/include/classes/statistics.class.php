@@ -657,14 +657,14 @@ class Statistics extends Base {
    * @param $account_id int account id
    * @return data array NOT FINISHED YET
    **/
-  public function getHourlyHashrateByAccount($username, $account_id=NULL) {
+  public function getHourlyHashrateByAccount($username, $account_id=NULL, $timezone) {
     $this->debug->append("STA " . __METHOD__, 4);
-    if ($data = $this->memcache->get(__FUNCTION__ . $account_id)) return $data;
+    if ($data = $this->memcache->get(__FUNCTION__ . $account_id . $timezone)) return $data;
     $stmt = $this->mysqli->prepare("
       SELECT
         id,
         IFNULL(ROUND(SUM(IF(difficulty=0, pow(2, (" . $this->config['difficulty'] . " - 16)), difficulty)) * POW(2, " . $this->config['target_bits'] . ") / 3600 / 1000), 0) AS hashrate,
-        HOUR(time) AS hour
+        HOUR(CONVERT_TZ(time, 'UTC', '". date_default_timezone_get() ."')) AS hour
       FROM " . $this->share->getTableName() . "
       WHERE time <= FROM_UNIXTIME(FLOOR(UNIX_TIMESTAMP(NOW())/(60*60))*(60*60))
         AND time >= FROM_UNIXTIME(FLOOR(UNIX_TIMESTAMP(NOW())/(60*60))*(60*60)) - INTERVAL 24 HOUR
@@ -675,7 +675,7 @@ class Statistics extends Base {
       SELECT
         share_id,
         IFNULL(ROUND(SUM(IF(difficulty=0, pow(2, (" . $this->config['difficulty'] . " - 16)), difficulty)) * POW(2, " . $this->config['target_bits'] . ") / 3600 / 1000), 0) AS hashrate,
-        HOUR(time) AS hour
+        HOUR(CONVERT_TZ(time, 'UTC', '". date_default_timezone_get() ."')) AS hour
       FROM " . $this->share->getArchiveTableName() . "
       WHERE time <= FROM_UNIXTIME(FLOOR(UNIX_TIMESTAMP(NOW())/(60*60))*(60*60))
         AND time >= FROM_UNIXTIME(FLOOR(UNIX_TIMESTAMP(NOW())/(60*60))*(60*60)) - INTERVAL 24 HOUR
@@ -699,14 +699,14 @@ class Statistics extends Base {
    * @param none
    * @return data array NOT FINISHED YET
    **/
-  public function getHourlyHashrateByPool() {
+  public function getHourlyHashrateByPool($timezone=NULL) {
     $this->debug->append("STA " . __METHOD__, 4);
-    if ($this->getGetCache() && $data = $this->memcache->get(__FUNCTION__)) return $data;
+    if ($data = $this->memcache->get(__FUNCTION__ . $timezone)) return $data;
     $stmt = $this->mysqli->prepare("
       SELECT
         id,
       	IFNULL(ROUND(SUM(IF(s.difficulty=0, pow(2, (" . $this->config['difficulty'] . " - 16)), s.difficulty)) * POW(2, " . $this->config['target_bits'] . ") / 3600 / 1000), 0) AS hashrate,
-        HOUR(s.time) AS hour
+        HOUR(CONVERT_TZ(s.time, 'UTC', '". date_default_timezone_get() ."')) AS hour
       FROM " . $this->share->getTableName() . " AS s
       WHERE time <= FROM_UNIXTIME(FLOOR(UNIX_TIMESTAMP(NOW())/(60*60))*(60*60))
         AND time >= FROM_UNIXTIME(FLOOR(UNIX_TIMESTAMP(NOW())/(60*60))*(60*60)) - INTERVAL 24 HOUR
@@ -716,7 +716,7 @@ class Statistics extends Base {
       SELECT
         share_id,
         IFNULL(ROUND(SUM(IF(s.difficulty=0, pow(2, (" . $this->config['difficulty'] . " - 16)), s.difficulty)) * POW(2, " . $this->config['target_bits'] . ") / 3600 / 1000), 0) AS hashrate,
-        HOUR(s.time) AS hour
+        HOUR(CONVERT_TZ(s.time, 'UTC', '". date_default_timezone_get() ."')) AS hour
       FROM " . $this->share->getArchiveTableName() . " AS s
       WHERE time <= FROM_UNIXTIME(FLOOR(UNIX_TIMESTAMP(NOW())/(60*60))*(60*60))
         AND time >= FROM_UNIXTIME(FLOOR(UNIX_TIMESTAMP(NOW())/(60*60))*(60*60)) - INTERVAL 24 HOUR

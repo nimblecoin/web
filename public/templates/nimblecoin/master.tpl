@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xml:lang="en" xmlns= "http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="Content-Language" content="en" />
+  <meta name="google" content="notranslate">
   <meta charset="UTF-8"/>
   <title>{$GLOBAL.website.title} | {$smarty.request.page|escape|default:"home"|capitalize}</title>
   <!--[if IE]><script type="text/javascript" src="{$PATH}/js/excanvas.js"></script><![endif]-->
