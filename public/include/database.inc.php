@@ -11,6 +11,8 @@ if ($config['mysql_filter']) {
 if (@$_SESSION['USERDATA']['id']) {
   $timezone = $mysqli->query('SELECT timezone FROM accounts WHERE id = '. @$_SESSION['USERDATA']['id'].'')->fetch_object()->timezone;
   date_default_timezone_set($timezone);
+} else {
+  date_default_timezone_set('UTC');
 }
 
 $mysqli->query('SET time_zone = '. date_default_timezone_get() .'');
