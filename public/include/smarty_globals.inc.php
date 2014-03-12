@@ -130,6 +130,10 @@ $aGlobal['acl']['chat']['page'] = $setting->getValue('acl_chat_page', 2);
 if (@$_SESSION['USERDATA']['id']) {
   $aGlobal['userdata'] = $_SESSION['USERDATA']['id'] ? $user->getUserData($_SESSION['USERDATA']['id']) : array();
   $aGlobal['userdata']['balance'] = $transaction->getBalance($_SESSION['USERDATA']['id']);
+  
+  if (!$aGlobal['userdata']['timezone']) {
+    $_SESSION['POPUP'][] = array('CONTENT' => 'NEW FEATURE! Set your timezone in your account settings!', 'TYPE' => 'info');
+  }
 
   // Other userdata that we can cache savely
   $aGlobal['userdata']['shares'] = $statistics->getUserShares($_SESSION['USERDATA']['username'], $_SESSION['USERDATA']['id']);
