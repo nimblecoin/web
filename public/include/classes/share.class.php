@@ -213,18 +213,34 @@ class Share Extends Base {
           FROM $this->table
           WHERE id > ? AND id <= ?
             AND time >= DATE_SUB(now(), INTERVAL " . $this->config['archive']['maxage'] . " MINUTE)";
+            
+      $archive_stmt = $this->mysqli->prepare($sql);
+      if ($this->checkStmt($archive_stmt) && $archive_stmt->bind_param('iii', $block_id, $previous_upstream, $current_upstream) && $archive_stmt->execute())
+        return true;
+      return $this->sqlError();
     } else {
       // PPLNS needs archived shares for later rounds, so we have to copy them all
       $sql = "
         INSERT INTO $this->tableArchive (share_id, username, our_result, upstream_result, block_id, time, difficulty)
           SELECT id, username, our_result, upstream_result, ?, time, IF(difficulty=0, pow(2, (" . $this->config['difficulty'] . " - 16)), difficulty) AS difficulty
           FROM $this->table
-          WHERE id > ? AND id <= ?";
+          WHERE id > ? AND id <= ? LIMIT " . $this->config['purge']['shares'];
+        
+        $archive_stmt = $this->mysqli->prepare($sql);
+        
+        // Batch this job into chunks of 25k shares at a time to prevent DB overload
+        $startID = $this->mysqli->query("SELECT min(id) as startID FROM $this->table")->fetch_object()->startID;
+        while ($startID < $current_upstream) {
+            $endID = min($startID + $this->config['purge']['shares'], $current_upstream);
+            if ($this->checkStmt($archive_stmt) && $archive_stmt->bind_param('iii', $block_id, $startID, $endID) && $archive_stmt->execute()) {
+                $startID += $this->config['purge']['shares'];
+                sleep($this->config['purge']['sleep']);
+            } else {
+                return $this->sqlError();
+            }
+        }
+        return true;
     }
-    $archive_stmt = $this->mysqli->prepare($sql);
-    if ($this->checkStmt($archive_stmt) && $archive_stmt->bind_param('iii', $block_id, $previous_upstream, $current_upstream) && $archive_stmt->execute())
-      return true;
-    return $this->sqlError();
   }
 
   /**
