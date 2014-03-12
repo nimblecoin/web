@@ -6,7 +6,7 @@
   <div class="tiles-chart">
     <ul class="nav nav-tabs p-t-10 p-l-10" id="dash-tab">
       <li class="active"><a href="#Account-Details">Account Details</a></li>
-      <li class=""><a href="#Withdraw">Manual Withdrawl</a></li>
+      <li class=""><a href="#Withdraw">Manual Withdrawal</a></li>
       <li class=""><a href="#Security">Security</a></li>
     </ul>
     <div class="tab-content">
