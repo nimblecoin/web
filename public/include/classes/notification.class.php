@@ -161,7 +161,7 @@ class Notification extends Mail {
     $failed = 0;
     $this->deleted = 0;
     $stmt = $this->mysqli->prepare("DELETE FROM $this->table WHERE time < (NOW() - ? * 24 * 60 * 60)");
-    if (! ($this->checkStmt($stmt) && $stmt->bind_param('i', $days) && $stmt->execute())) {
+    if (!($this->checkStmt($stmt) && $stmt->bind_param('i', $days) && $stmt->execute())) {
       $failed++;
     } else {
       $this->deleted += $stmt->affected_rows;
