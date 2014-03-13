@@ -5,34 +5,64 @@
 {if $DISABLE_TRANSACTIONSUMMARY|default:"0" != 1}
 <div class="row spacing-bottom 2col">
   
-  <div class="col-md-4 col-sm-4 spacing-bottom-sm ">
+  <div class="col-md-6 col-sm-6 spacing-bottom-sm ">
     <div class="tiles green added-margin">
       <div class="tiles-body">
-        <div class="tiles-title"> TOTAL EARNED </div>
-        <div class="heading"> <span>{$SUMMARY['Credit']}</span> </div>
+        <div class="tiles-title"> LAST 30 DAYS </div>
+        <div class="heading"> <span>{$TOTAL|number_format:'0'}</span> </div>
       </div>
     </div>
   </div>
   
-  <div class="col-md-4 col-sm-4 spacing-bottom-sm ">
+  <div class="col-md-6 col-sm-6 spacing-bottom-sm ">
     <div class="tiles blue added-margin">
       <div class="tiles-body">
-        <div class="tiles-title"> SENT TO WALLET </div>
-        <div class="heading"> <span>{$SUMMARY['Debit_AP'] + $SUMMARY['Debit_MP']}</span> </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-md-4 col-sm-4 spacing-bottom-sm ">
-    <div class="tiles purple">
-      <div class="tiles-body">
-        <div class="tiles-title"> DONATED </div>
-        <div class="heading"> <span>{$SUMMARY['Donation']}</span> </div>
+        <div class="tiles-title"> AVERAGE PER DAY </div>
+        <div class="heading"> <span>{$AVERAGE|number_format:'0'}</span> </div>
       </div>
     </div>
   </div>
   
 </div>
+
+{if is_array($MONTHLY)}
+<div class="row-fluid">
+    <div class="grid simple">
+      <div class="grid-title no-border">
+        <h4>Last <strong>30 Days</strong></h4>
+      </div>
+      <div class="grid-body no-border">
+        <div id="monthly-earnings-graph"></div>
+      </div>
+    </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {	
+  Morris.Area({
+	  element: 'monthly-earnings-graph',
+	  data: [
+    {foreach $MONTHLY as $day}
+    { day: '{$day.day}', a: {$day.amount}, b: {$day.total} },
+    {/foreach}
+	  ],
+	  xkey: 'day',
+	  ykeys: ['a', 'b'],
+	  labels: ['Amount','Total'],
+	  lineColors:['#0090d9','#0AA699'],
+	  lineWidth:'2',
+	  grid:true,
+	  continuousLine:true,
+	  parseTime:false,
+	  fillOpacity:'0.5',
+	  pointSize:'0',
+	  goals: [{$AVERAGE}],
+	  goalLineColors: ['#0AA699']
+	});
+});
+</script>
+{/if}
+
 {/if}
 
 {if $TRANSACTIONS}
@@ -108,6 +138,40 @@
     </div>
   </div>
 </div>
+
+{if $DISABLE_TRANSACTIONSUMMARY|default:"0" != 1}
+<div class="row spacing-bottom 2col">
+  
+  <div class="col-md-4 col-sm-4 spacing-bottom-sm ">
+    <div class="tiles green added-margin">
+      <div class="tiles-body">
+        <div class="tiles-title"> NET EARNED </div>
+        <div class="heading"> <span>{($SUMMARY['Credit'] + $SUMMARY['Bonus'])|number_format:'0'}</span> </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 col-sm-4 spacing-bottom-sm ">
+    <div class="tiles blue added-margin">
+      <div class="tiles-body">
+        <div class="tiles-title"> SENT TO WALLET </div>
+        <div class="heading"> <span>{($SUMMARY['Debit_AP'] + $SUMMARY['Debit_MP'])|number_format:'0'}</span> </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 col-sm-4 spacing-bottom-sm ">
+    <div class="tiles purple">
+      <div class="tiles-body">
+        <div class="tiles-title"> DONATED </div>
+        <div class="heading"> <span>{$SUMMARY['Donation']|number_format:'0'}</span> </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+{/if}
+
 {else}
 <div class="well">No transactions yet! Coins are distributed after you've been mining with us and a block has been found.</div>
 {/if}

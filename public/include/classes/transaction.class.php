@@ -70,7 +70,7 @@ class Transaction extends Base {
     $sql = "
       SELECT
         SUM(t.amount) AS total, t.type AS type
-      FROM transactions AS t
+      FROM $this->table AS t
       LEFT OUTER JOIN blocks AS b
       ON b.id = t.block_id
       WHERE ( b.confirmations > 0 OR b.id IS NULL )";
@@ -97,6 +97,33 @@ class Transaction extends Base {
       // Cache data for a while, query takes long on many rows
       return $this->memcache->setCache(__FUNCTION__ . $account_id, $aData, 60);
     }
+    return $this->sqlError();
+  }
+  
+  /**
+   * Fetch a monthly earnings for a user
+   * @param account_id int Account ID, NULL for all
+   * @return data array type and total
+   **/
+  public function getMonthlyEarnings($account_id=NULL) {
+    if ($data = $this->memcache->get(__FUNCTION__ . $account_id)) return $data;
+    $sql = "SELECT DATE_FORMAT(t.timestamp,'%M %d') as day, t.type as type, SUM(t.amount) as amount FROM $this->table AS t  
+      LEFT OUTER JOIN blocks AS b 
+      ON b.id = t.block_id
+      WHERE ( b.confirmations > 0 OR b.id IS NULL ) 
+    AND t.timestamp >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND (t.type = 'Credit' OR t.type = 'Bonus')";
+    if (!empty($account_id)) {
+      $sql .= " AND t.account_id = ? ";
+      $this->addParam('i', $account_id);
+    }
+    $sql .= " GROUP BY DAY(t.timestamp) ORDER BY t.timestamp ASC";
+    $stmt = $this->mysqli->prepare($sql);
+    
+    if ($this->checkStmt($stmt) && call_user_func_array( array($stmt, 'bind_param'), $this->getParam()) && $stmt->execute() && $result = $stmt->get_result())
+      // Cache data for a while, query takes long on many rows
+      $this->memcache->setCache(__FUNCTION__ . $account_id, $aData, 60);
+      
+      return $result->fetch_all(MYSQLI_ASSOC);
     return $this->sqlError();
   }
 

@@ -10,6 +10,21 @@ if ($user->isAuthenticated()) {
   if (!$setting->getValue('disable_transactionsummary')) {
     $aTransactionSummary = $transaction->getTransactionSummary($_SESSION['USERDATA']['id']);
     $smarty->assign('SUMMARY', $aTransactionSummary);
+    
+    $aMonthlyEarnings = $transaction->getMonthlyEarnings($_SESSION['USERDATA']['id']);
+    
+    $i = 1;
+    foreach ($aMonthlyEarnings as $key => $value) {
+      $total += $aMonthlyEarnings[$key]['amount'];
+      $aMonthlyEarnings[$key]['total'] = $total;
+      $i++;
+    }
+    
+    $average = $total/$i;
+    
+    $smarty->assign('AVERAGE', $average);
+    $smarty->assign('TOTAL', $total);
+    $smarty->assign('MONTHLY', $aMonthlyEarnings);
   }
   $smarty->assign('LIMIT', $iLimit);
   $smarty->assign('TRANSACTIONS', $aTransactions);
