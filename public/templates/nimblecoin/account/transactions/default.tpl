@@ -50,11 +50,11 @@ $(document).ready(function() {
 	  ykeys: ['a', 'b'],
 	  labels: ['Amount','Total'],
 	  lineColors:['#0090d9','#0AA699'],
-	  lineWidth:'2',
+	  lineWidth:'4',
 	  grid:true,
 	  continuousLine:true,
 	  parseTime:false,
-	  fillOpacity:'0.5',
+	  fillOpacity:'0',
 	  pointSize:'0',
 	  goals: [{$AVERAGE}],
 	  goalLineColors: ['#0AA699']
