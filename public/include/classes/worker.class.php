@@ -47,15 +47,7 @@ class Worker extends Base {
   public function getAllIdleWorkers($interval=1200) {
     $this->debug->append("STA " . __METHOD__, 4);
     if ($data = $this->memcache->get(__FUNCTION__)) return $data;
-    $stmt = $this->mysqli->prepare("
-      SELECT w.account_id AS account_id, w.id AS id, w.username AS username
-      FROM " . $this->share->getTableName() . " AS s
-      RIGHT JOIN " . $this->getTableName() . " AS w
-      ON w.username = s.username
-      AND s.time > DATE_SUB(now(), INTERVAL ? SECOND)
-      AND our_result = 'Y'
-      WHERE s.id IS NULL
-    ");
+    $stmt = $this->mysqli->prepare("SELECT account_id, id, username, last_share_timestamp FROM " . $this->getTableName() . " WHERE last_share_timestamp < DATE_SUB(now(), INTERVAL ? SECOND)");
     if ($this->checkStmt($stmt) && $stmt->bind_param('i', $interval) && $stmt->execute() && $result = $stmt->get_result())
       return $result->fetch_all(MYSQLI_ASSOC);
     return $this->sqlError('E0054');
