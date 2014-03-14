@@ -12,7 +12,6 @@ $username = $user->getUsername($user_id);
 $workername = $_REQUEST['workername'];
 $hashrate = $_REQUEST['hashrate'];
 
-$worker = new Worker();
 $worker->setWorkerHashRate($workername,$hashrate);
 
 // Output JSON
