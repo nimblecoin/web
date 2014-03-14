@@ -260,12 +260,10 @@ class Worker extends Base {
    **/
   public function setWorkerHashRate($username,$hashrate)
   {
-	$stmt = $this->mysqli->prepare("
-	update $this->table set hashrate=? where username=?
-	");
-	if ($this->checkStmt($stmt) && $stmt->bind_param('is', $hashrate, $username) && $stmt->execute() && $stmt->affected_rows == 1)
-		return true;
-	return $this->sqlError('E0062');
+    $stmt = $this->mysqli->prepare("UPDATE $this->table SET hashrate = ? WHERE username = ?");
+    if ($this->checkStmt($stmt) && $stmt->bind_param('is', $hashrate, $username) && $stmt->execute() && $stmt->affected_rows == 1)
+      return true;
+    return $this->sqlError('E0062');
   }
 }
 
