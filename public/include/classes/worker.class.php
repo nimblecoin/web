@@ -239,7 +239,6 @@ class Worker extends Base {
     }
     return $this->sqlError('E0060');
   }
-
   /**
    * Delete existing worker from account
    * @param account_id int User ID
@@ -252,6 +251,21 @@ class Worker extends Base {
     if ($this->checkStmt($stmt) && $stmt->bind_param('ii', $account_id, $id) && $stmt->execute() && $stmt->affected_rows == 1)
         return true;
     return $this->sqlError('E0061');
+  }
+  /**
+   * Set hashrate for a worker
+   * @param username string worker username
+   * @param hashrate int Hashrate (KH/s)
+   * @return bool
+   **/
+  public function setWorkerHashRate($username,$hashrate)
+  {
+	$stmt = $this->mysqli->prepare("
+	update $this->table set hashrate=? where username=?
+	");
+	if ($this->checkStmt($stmt) && $stmt->bind_param('si', $username, $hashrate) && $stmt->execute() && $stmt->affected_rows == 1)
+		return true;
+	return $this->sqlError('E0062');
   }
 }
 
