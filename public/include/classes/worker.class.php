@@ -263,7 +263,7 @@ class Worker extends Base {
 	$stmt = $this->mysqli->prepare("
 	update $this->table set hashrate=? where username=?
 	");
-	if ($this->checkStmt($stmt) && $stmt->bind_param('si', $username, $hashrate) && $stmt->execute() && $stmt->affected_rows == 1)
+	if ($this->checkStmt($stmt) && $stmt->bind_param('is', $hashrate, $username) && $stmt->execute() && $stmt->affected_rows == 1)
 		return true;
 	return $this->sqlError('E0062');
   }
