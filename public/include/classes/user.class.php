@@ -495,10 +495,10 @@ class User extends Base {
       return false;
     }
     if (!empty($address)) {
-      if ($address != $this->getCoinAddress($userID) && $this->existsCoinAddress($address)) {
-        $this->setErrorMessage('Address is already in use');
-        return false;
-      }
+      //if ($address != $this->getCoinAddress($userID) && $this->existsCoinAddress($address)) {
+        //$this->setErrorMessage('Address is already in use');
+        //return false;
+      //}
       if ($this->bitcoin->can_connect() === true) {
         if (!$this->bitcoin->validateaddress($address)) {
           $this->setErrorMessage('Invalid coin address');
