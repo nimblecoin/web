@@ -220,7 +220,7 @@
             <tr>
               <td><span class="muted"><em>In Progress</em></span></td>
               <td><span class="muted">{$ESTIMATES.percent}% done</span></td>
-              <td><span class="muted">250,000 <i class="fa fa-info-circle tip" data-toggle="tooltip" title="Dogecoin block rewards are random from 1 to 500,000 coins." data-placement="top"></i></span></td>
+              <td><span class="muted">250,000 <i class="fa fa-info-circle tip" data-toggle="tooltip" title="Dogecoin block rewards are each worth 250,000 coins." data-placement="top"></i></span></td>
               <td><span class="muted">{$GLOBAL.userdata.estimates.payout|number_format:"8"}</span></td>
               <td>
                 <span class="label">Estimated</span> <i class="fa fa-info-circle tip" data-toggle="tooltip" title="Estimated based on an average 250,000 block reward." data-placement="top"></i>
@@ -239,7 +239,7 @@
                 {else if $TRANSACTIONS[transaction].confirmations == -1}
                 <span class="label">Orphaned</span> <i class="fa fa-info-circle tip" data-toggle="tooltip" title="When two people find a block at the same time. The network picks one to be valid and the other is orphaned (invalid)." data-placement="top"></i>
                 {else}
-                <span class="label label-warning">Unconfirmed</span> <i class="fa fa-info-circle tip" data-toggle="tooltip" title="Blocks needs 120 confirmations from the Dogecoin network before they can be confirmed and paid out." data-placement="top"></i>
+                <span class="label label-warning">Unconfirmed</span> <i class="fa fa-info-circle tip" data-toggle="tooltip" title="Blocks needs 240 confirmations (~4 hours) from the Dogecoin network before they can be confirmed and paid out." data-placement="top"></i>
                 {/if}
               </td>
             </tr>

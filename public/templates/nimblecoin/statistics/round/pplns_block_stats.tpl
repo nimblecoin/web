@@ -13,7 +13,7 @@
 					<h3 class="text-success semi-bold">Đ {$BLOCKDETAILS.amount|number_format}</h3>
 				</div>
 				<div class="col-md-3 col-sm-5">
-				  <h4 class="text-black semi-bold"><i class="fa fa-info-circle tip" data-toggle="tooltip" title="Blocks must be confirmed by the Dogecoin network before they can be paid out. This usually takes less than 30 minutes." data-placement="right"></i> Status</h4>
+				  <h4 class="text-black semi-bold"><i class="fa fa-info-circle tip" data-toggle="tooltip" title="Blocks must mature in the Dogecoin network before they can be paid out. This usually takes around 4 hours" data-placement="right"></i> Status</h4>
 					<h4 class="text-success semi-bold">
 					  {if $BLOCKDETAILS.confirmations >= $GLOBAL.confirmations}
               <span class="label label-info">Confirmed</span>
