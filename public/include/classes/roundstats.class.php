@@ -42,10 +42,10 @@ class RoundStats extends Base {
    **/
   public function searchForBlockHeight($iHeight=0) {
     $stmt = $this->mysqli->prepare("
-       SELECT height 
+       SELECT height
        FROM " . $this->block->getTableName() . "
        WHERE height >= ?
-       ORDER BY height ASC 
+       ORDER BY height ASC
        LIMIT 1");
     if ($this->checkStmt($stmt) && $stmt->bind_param('i', $iHeight) && $stmt->execute() && $result = $stmt->get_result())
       return $result->fetch_object()->height;
@@ -75,8 +75,8 @@ class RoundStats extends Base {
    **/
   public function getDetailsForBlockHeight($iHeight=0) {
     $stmt = $this->mysqli->prepare("
-      SELECT 
-      b.id, height, blockhash, amount, confirmations, difficulty, FROM_UNIXTIME(time) as time, shares,
+      SELECT
+      b.id, height, blockhash, amount, confirmations, difficulty, FROM_UNIXTIME(CONVERT_TZ(time, 'UTC', '". date_default_timezone_get() ."')) as time, shares,
       IF(a.is_anonymous, 'anonymous', a.username) AS finder,
       ROUND((difficulty * 65535) / POW(2, (" . $this->config['difficulty'] . " -16)), 0) AS estshares,
       (time - (SELECT time FROM $this->tableBlocks WHERE height < ? ORDER BY height DESC LIMIT 1)) AS round_time
@@ -233,7 +233,7 @@ class RoundStats extends Base {
         b.height, b.shares
         FROM " . $this->block->getTableName() . " AS b
         LEFT JOIN " . $this->statistics->getTableName() . " AS s ON s.block_id = b.id
-        LEFT JOIN " . $this->user->getTableName() . " AS a ON a.id = s.account_id 
+        LEFT JOIN " . $this->user->getTableName() . " AS a ON a.id = s.account_id
       WHERE b.height <= ? AND a.id = ?
       ORDER BY height DESC LIMIT ?");
     if ($this->checkStmt($stmt) && $stmt->bind_param('iii', $iHeight, $iUser, $limit) && $stmt->execute() && $result = $stmt->get_result())
