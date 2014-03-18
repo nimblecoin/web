@@ -97,26 +97,6 @@ $aGlobal = array(
   )
 );
 
-function smarty_modifier_seconds_to_words($seconds) {
-  if ($seconds < 0) throw new Exception("Can't do negative numbers!");
-  if ($seconds == 0) return "zero seconds";
-  if ($seconds < 1) return "less than a second";
-
-  $hours = intval($seconds/pow(60,2));
-  $minutes = intval($seconds/60)%60;
-  $seconds = $seconds%60;
-  $out = "";
-
-  if ($hours > 0) $out .= $hours . " hour". ($hours > 1 ? "s" : "")." ";
-  if ($minutes > 0) $out .= $minutes . " minute". ($minutes > 1 ? "s" : "")." ";
-  return trim($out);
-}
-
-if ($dBlockCount < 145000) {
-  $blocktimeleft = ((145000-$dBlockCount) * 60);
-  $_SESSION['POPUP'][] = array('CONTENT' => 'Dogecoin switches to 250,000 static block rewards in ' . smarty_modifier_seconds_to_words($blocktimeleft), 'TYPE' => 'info');
-}
-
 // Website configurations
 $aGlobal['website']['name'] = $setting->getValue('website_name');
 $aGlobal['website']['title'] = $setting->getValue('website_title');
