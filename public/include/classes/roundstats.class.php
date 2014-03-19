@@ -76,7 +76,7 @@ class RoundStats extends Base {
   public function getDetailsForBlockHeight($iHeight=0) {
     $stmt = $this->mysqli->prepare("
       SELECT
-      b.id, height, blockhash, amount, confirmations, difficulty, FROM_UNIXTIME(CONVERT_TZ(time, 'UTC', '". date_default_timezone_get() ."')) as time, shares,
+      b.id, height, blockhash, amount, confirmations, difficulty, CONVERT_TZ(FROM_UNIXTIME(time), 'UTC', '". date_default_timezone_get() ."') as time, shares,
       IF(a.is_anonymous, 'anonymous', a.username) AS finder,
       ROUND((difficulty * 65535) / POW(2, (" . $this->config['difficulty'] . " -16)), 0) AS estshares,
       (time - (SELECT time FROM $this->tableBlocks WHERE height < ? ORDER BY height DESC LIMIT 1)) AS round_time
