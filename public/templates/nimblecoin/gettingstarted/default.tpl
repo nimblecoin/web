@@ -1,5 +1,5 @@
 <div class="page-title">
-  <h3>Getting Started</h3>	
+  <h3>Getting Started</h3>
 </div>
 
 <div class="row">
@@ -18,7 +18,7 @@
       <li>
         <h4>Download a Mining App</h4>
         <ul>
-          <li><a href="http://ck.kolivas.org/apps/cgminer/" target="_blank"><strong>CGMiner</strong></a> <em>Windows/Linux</em></li>
+          <li><a href="https://github.com/veox/sgminer/" target="_blank"><strong>SGMiner</strong></a> <em>Windows/Linux</em></li>
           <li><a href="http://www.asteroidapp.com/" target="_blank"><strong>Asteroid</strong></a> <em>Mac OSX</em> </li>
         </ul>
       </li>
@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="row">
           <div class="col-md-12 m-b-20">
             <div class="stratum-info">
@@ -39,7 +39,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="row">
           <div class="col-md-12 m-b-20">
             <div class="stratum-info">
@@ -47,7 +47,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="row">
           <div class="col-md-12">
             <div class="stratum-info">
